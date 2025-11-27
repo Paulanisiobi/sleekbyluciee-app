@@ -1,0 +1,14 @@
+Summary,Issue Type,Description,Priority,Story Points,Labels,Epic Name,Epic Link,Components,Original Estimate,Sprint,Assignee
+Repo + CI: Initialize repository and CI,Task,Create repository, set branch protections, add GitHub Actions pipeline and README,High,3,setup,Project Setup & Discovery,Project Setup & Discovery,DevOps,1d,SPRINT-1,unassigned
+Infra bootstrap: Terraform & AWS account,Task,Create Terraform skeleton, VPC, RDS, S3, and deploy staging networking,High,8,infra,Project Setup & Discovery,Project Setup & Discovery,DevOps,3d,SPRINT-1,unassigned
+Design System: UI kit + Storybook,Task,Create base Tailwind/Chakra system and Storybook with core components,High,5,design,Design System,Design System,Frontend,3d,SPRINT-1,designer@example.com
+Product Model & CMS decision,Task,Define product schema, size matrix and choose headless CMS (Strapi/Sanity/Shopify),High,5,product,Product Catalog,Product Catalog,Backend;Product,2d,SPRINT-1,product@example.com
+Frontend skeleton: Next.js app,Task,Scaffold Next.js app with routing, layout and global styles,Highest,8,frontend,Product Catalog,Product Catalog,Frontend,4d,SPRINT-1,frontend@example.com
+Backend skeleton: NestJS service,Task,Scaffold NestJS project, core modules, Dockerfile,Highest,8,backend,Project Setup & Discovery,Project Setup & Discovery,Backend,4d,SPRINT-1,backend@example.com
+Auth MVP: registration & login,Story,Implement email/password auth, JWT sessions and profile endpoint,High,5,auth,Authentication & Profiles,Authentication & Profiles,Backend,2d,SPRINT-1,backend@example.com
+Product API & seed data,Story,Create product CRUD API and seed sample products,High,5,api,Product Catalog,Product Catalog,Backend,3d,SPRINT-1,backend@example.com
+Product listing UI,Story,List & filter products page with sample data,High,5,frontend,Product Catalog,Product Catalog,Frontend,3d,SPRINT-1,frontend@example.com
+Payments spike: PSP sandbox integration,Spike,Integrate Paystack/Flutterwave sandbox checkout and webhooks,High,5,payments,Cart & Checkout,Cart & Checkout,Payments,3d,SPRINT-1,payments@example.com
+Measurement spike: MediaPipe POC,Spike,Run CV spike (MediaPipe) to estimate core measurements from images,High,8,measurement,Measurement & Fitting,Measurement & Fitting,Research,5d,SPRINT-1,ml@example.com
+Staging deploy: deploy frontend & backend to staging,Task,Deploy apps to staging environment and configure domains,High,5,deploy,Project Setup & Discovery,Project Setup & Discovery,DevOps,3d,SPRINT-1,devops@example.com
+QA & testing: set up test harness,Task,Configure unit tests, basic integration tests and CI gating,High,5,testing,Project Setup & Discovery,Project Setup & Discovery,QA,3d,SPRINT-1,qa@example.com

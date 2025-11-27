@@ -1,0 +1,22 @@
+Summary,Issue Type,Description,Priority,Epic Link,Epic Name,Story Points,Labels,Assignee,Components,Original Estimate
+Project Setup: Initialize repo and CI,Task,Initialize repository and GitHub Actions for CI; protect main branch,High,Project Setup & Discovery,Project Setup & Discovery,3,setup,unassigned,DevOps,1d
+Epic: Measurement feasibility (MVP),Epic,Proof-of-concept for measurement capture and estimation,High,,Measurement & Fitting,5,measurement,,Research,2d
+Spike: Measurement feasibility (MVP) - POC,Spike,Run a proof-of-concept that accepts photos and returns estimated measurements. README and run instructions included.,High,Measurement & Fitting,Measurement & Fitting,5,measurement;spike,unassigned,Research,3d
+Epic: Authentication & Profiles,Epic,User accounts, measurement profiles and authentication flows,High,,Authentication & Profiles,8,auth,,Backend,5d
+User Story: Account Registration,Story,As a shopper I can create an account and verify email. Acceptance: register, receive verification email, and login.,High,Authentication & Profiles,Authentication & Profiles,3,auth,unassigned,Backend,1d
+User Story: Save Measurement Profile,Story,As a user I can save a measurement profile to reuse for orders. Acceptance: Measurements saved, visible in profile, encrypted at rest.,High,Authentication & Profiles,Authentication & Profiles,5,measurements,unassigned,Backend;Security,2d
+Epic: Product Catalog,Epic,Product browsing, PDPs, categories and filters,High,,Product Catalog,13,catalog,,Frontend;Backend,10d
+User Story: Browse Catalog,Story,As a shopper I can browse categories and filter products. Acceptance: categories & filters return expected products.,High,Product Catalog,Product Catalog,5,catalog,unassigned,Frontend,3d
+User Story: Product Detail Page,Story,As a shopper I can view product details, images, materials, and size guide. Acceptance: PDP shows gallery, size guide and works.,High,Product Catalog,Product Catalog,8,catalog,unassigned,Frontend,5d
+Epic: Cart & Checkout,Epic,Cart persistence and checkout integrations,High,,Cart & Checkout,13,checkout,,Payments;Backend,12d
+User Story: Persistent Cart,Story,Cart persists across devices when user is logged in. Acceptance: Items added on one device appear on another after login.,High,Cart & Checkout,Cart & Checkout,5,checkout,unassigned,Backend,3d
+User Story: Checkout with Paystack,Story,As a shopper I can complete payment with Paystack. Acceptance: Orders created and payment webhook reconciles status.,High,Cart & Checkout,Cart & Checkout,8,checkout;payments,unassigned,Payments,4d
+Epic: AI Chatbot,Epic,Chatbot for FAQs, order status, and human handoff,Medium,,AI Chatbot,8,ai,,AI;Chat,6d
+User Story: AI Chatbot FAQ,Story,Chatbot answers FAQs and provides order status lookups. Acceptance: chatbot handles >80% FAQ intents and hands off to human when needed.,Medium,AI Chatbot,AI Chatbot,8,ai;chatbot,unassigned,AI,7d
+Epic: Consultation & Appointments,Epic,Booking and virtual consultation flows,Medium,,Consultation & Appointments,8,consult,,Product;Backend,8d
+User Story: Booking Virtual Consultation,Story,User schedules virtual consultation and receives calendar invite. Acceptance: Booking stored and calendar invite + reminders sent.,Medium,Consultation & Appointments,Consultation & Appointments,5,consult;booking,unassigned,Backend,3d
+Epic: Admin / Merchant Dashboard,Epic,Admin capabilities: products, orders, leads, reports,High,,Admin / Merchant Dashboard,13,admin,,Admin;Backend,10d
+Task: Admin Dashboard - core,Task,Admin can manage products, orders, and leads. Acceptance: Admin CRUD implemented; orders view and export present.,High,Admin / Merchant Dashboard,Admin / Merchant Dashboard,13,admin,unassigned,Admin;Backend,8d
+Epic: Marketing & CRM,Epic,Marketing automation, abandoned cart flows and CRM integration,High,,Marketing & CRM,8,marketing,,Marketing;Backend,6d
+Task: Marketing Automation,Task,Setup abandoned cart flows and CRM integration,High,Marketing & CRM,Marketing & CRM,8,marketing,unassigned,Marketing,5d
+Task: Analytics & Monitoring,Task,Instrument GA4, Sentry and basic analytics events. Acceptance: GA4 events tracked and Sentry reporting errors.,Medium,Analytics,Analytics,3,analytics,unassigned,Analytics,2d

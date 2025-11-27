@@ -1,0 +1,54 @@
+[
+  {
+    "fields": {
+      "project": { "key": "SBY" },
+      "summary": "Epic: Measurement feasibility (MVP)",
+      "description": "Proof-of-concept for measurement capture and estimation",
+      "issuetype": { "name": "Epic" },
+      "priority": { "name": "High" },
+      "labels": ["measurement"],
+      "customfield_10011": "Measurement & Fitting"
+    }
+  },
+  {
+    "fields": {
+      "project": { "key": "SBY" },
+      "summary": "Spike: Measurement feasibility (MVP) - POC",
+      "description": "Run a proof-of-concept that accepts photos and returns estimated measurements. README and run instructions included.",
+      "issuetype": { "name": "Spike" },
+      "priority": { "name": "High" },
+      "labels": ["measurement","spike"],
+      "components": [{"name":"Research"}, {"name":"Measurement"}],
+      "timetracking": { "originalEstimate": "24h" },
+      "customfield_10011": "Measurement & Fitting"
+    }
+  },
+  {
+    "fields": {
+      "project": { "key": "SBY" },
+      "summary": "User Story: Account Registration",
+      "description": "As a shopper I can create an account and verify email. Acceptance: register, receive verification email, and login.",
+      "issuetype": { "name": "Story" },
+      "priority": { "name": "High" },
+      "labels": ["auth"],
+      "assignee": { "name": "unassigned" },
+      "components": [{"name":"Backend"}],
+      "timetracking": { "originalEstimate": "8h" },
+      "customfield_10011": "Authentication & Profiles"
+    }
+  },
+  {
+    "fields": {
+      "project": { "key": "SBY" },
+      "summary": "User Story: Save Measurement Profile",
+      "description": "As a user I can save a measurement profile to reuse for orders. Acceptance: Measurements saved, visible in profile, encrypted at rest.",
+      "issuetype": { "name": "Story" },
+      "priority": { "name": "High" },
+      "labels": ["measurements"],
+      "assignee": { "name": "unassigned" },
+      "components": [{"name":"Backend"}, {"name":"Security"}],
+      "timetracking": { "originalEstimate": "16h" },
+      "customfield_10011": "Authentication & Profiles"
+    }
+  }
+]

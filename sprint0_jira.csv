@@ -1,0 +1,14 @@
+Summary,Issue Type,Description,Priority,Epic Link,Epic Name,Story Points,Labels,Assignee,Components,Original Estimate
+Repo + CI: Initialize repository and CI,Task,Create repository, set branch protections, add GitHub Actions pipeline and README,High,Project Setup & Discovery,Project Setup & Discovery,3,setup,unassigned,DevOps,1d
+Infra bootstrap: Terraform & AWS account,Task,Create Terraform skeleton, VPC, RDS, S3, and deploy staging networking,High,Project Setup & Discovery,Project Setup & Discovery,8,infra,unassigned,DevOps,3d
+Design System: UI kit + Storybook,Task,Create base Tailwind/Chakra system and Storybook with core components,High,Design,System Design,5,design,unassigned,Frontend,3d
+Product Model & CMS decision,Task,Define product schema, size matrix and choose headless CMS (Strapi/Sanity/Shopify),High,Product Catalog,Product Catalog,5,product,unassigned,Backend;Product,2d
+Frontend skeleton: Next.js app,Task,Scaffold Next.js app with routing, layout and global styles,P0,Product Catalog,Product Catalog,8,frontend,unassigned,Frontend,4d
+Backend skeleton: NestJS service,Task,Scaffold NestJS project, core modules, Dockerfile,P0,Project Setup & Discovery,Project Setup & Discovery,8,backend,unassigned,Backend,4d
+Auth MVP: registration & login,Story,Implement email/password auth, JWT sessions and profile endpoint,High,Authentication & Profiles,Authentication & Profiles,5,auth,unassigned,Backend,2d
+Product API & seed data,Story,Create product CRUD API and seed sample products,High,Product Catalog,Product Catalog,5,api,unassigned,Backend,3d
+Product listing UI,Story,List & filter products page with sample data,High,Product Catalog,Product Catalog,5,frontend,unassigned,Frontend,3d
+Payments spike: PSP sandbox integration,Spike,Integrate Paystack/Flutterwave sandbox checkout and webhooks,High,Cart & Checkout,Cart & Checkout,5,payments,unassigned,Payments,3d
+Measurement spike: Do measurement feasibility POC,Spike,Run CV spike (MediaPipe) to estimate core measurements from images,High,Measurement & Fitting,Measurement & Fitting,8,measurement;spike,unassigned,Research,5d
+Staging deploy: deploy frontend & backend to staging,Task,Deploy apps to staging environment and configure domains,High,Project Setup & Discovery,Project Setup & Discovery,5,deploy,unassigned,DevOps,3d
+QA & testing: set up test harness,Task,Configure unit tests, basic integration tests and CI gating,High,Project Setup & Discovery,Project Setup & Discovery,5,testing,unassigned,QA,3d

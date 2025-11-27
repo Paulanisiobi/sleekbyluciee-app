@@ -1,0 +1,16 @@
+Summary,Description,Issue Type,Epic,Priority,Story Points,Acceptance Criteria
+Project Setup: Initialize repo and CI,Initialize repository, branch protection, and GitHub Actions for CI,Task,Project Setup & Discovery,High,3,Repository created with README, CI pipeline and protected main branch
+Spike: Measurement feasibility (MVP),Run a proof-of-concept that accepts photos and returns estimated measurements,Spike,Measurement & Fitting,High,5,POC returns JSON with measurements and confidence; README with run steps
+User Story: Account Registration,As a shopper I can create an account and verify email,Story,Authentication & Profiles,High,3,User can register, receive verification email, and login
+User Story: Save Measurement Profile,As a user I can save a measurement profile to reuse for orders,Story,Authentication & Profiles,High,5,User saves measurement profile; profile visible in account and encrypted at rest
+User Story: Browse Catalog,As a shopper I can browse categories and filter products,Story,Product Catalog,High,5,Category list and filtering returns expected products
+User Story: Product Detail Page,As a shopper I can view product details, images, materials, and size guide,Story,Product Catalog,High,8,PDP shows gallery, size guide and "Add to cart" works
+User Story: Persistent Cart,Cart persists across devices when user is logged in,Story,Cart & Checkout,High,5,Items added on one device appear on another after login
+User Story: Checkout with Paystack,As a shopper I can complete payment with Paystack,Story,Cart & Checkout,High,8,Orders created and payment webhooks reconcile status
+User Story: Guided Manual Measurements,User can enter manual measurements with illustrations,Story,Measurement & Fitting,High,5,Measurements saved in profile and used for size recommendations
+User Story: Camera-assisted Measurement (MVP),User can take front + side photos for measurement estimation,Story,Measurement & Fitting,High,8,API returns measurements + confidence or requests manual entry
+User Story: AI Chatbot FAQ,Chatbot answers FAQs and provides order status lookups,Story,AI Chatbot,Medium,8,Chatbot handles >80% FAQ intents and hands off to human when needed
+User Story: Booking Virtual Consultation,User schedules virtual consultation and receives calendar invite,Story,Consultation & Appointments,Medium,5,Booking stored and calendar invite + reminders sent
+Epic: Admin Dashboard,Admin can manage products, orders, and leads,Epic,Admin / Merchant Dashboard,High,13,Admin CRUD implemented; orders view and export present
+Epic: Marketing Automation,Setup abandoned cart flows and CRM integration,Epic,Marketing & CRM,High,8,Abandoned cart emails sent and leads pushed to CRM
+Task: Analytics & Monitoring,Instrument GA4 and error monitoring,Task,Analytics,Medium,3,GA4 events tracked and Sentry reporting errors

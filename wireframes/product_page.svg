@@ -1,0 +1,16 @@
+<svg width="1200" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#fff"/>
+  <rect x="60" y="40" width="520" height="560" fill="#f5f5f5" stroke="#ddd"/>
+  <text x="80" y="80" font-family="Arial" font-size="20" fill="#333">Product image gallery (main + thumbnails)</text>
+  <rect x="600" y="60" width="500" height="120" fill="#fff" stroke="#eee"/>
+  <text x="620" y="92" font-family="Arial" font-size="24" fill="#111">Product Title</text>
+  <text x="620" y="130" font-family="Arial" font-size="18" fill="#666">Price • Materials • SKU</text>
+  <rect x="600" y="200" width="500" height="160" fill="#fff" stroke="#eee"/>
+  <text x="620" y="230" font-family="Arial" font-size="16" fill="#333">Size selector • Size guide link</text>
+  <rect x="600" y="380" width="500" height="120" fill="#fff" stroke="#eee"/>
+  <text x="620" y="410" font-family="Arial" font-size="18" fill="#111">Add to cart  • Wishlist</text>
+  <rect x="60" y="640" width="1040" height="300" fill="#fafafa" stroke="#eee"/>
+  <text x="80" y="680" font-family="Arial" font-size="18" fill="#333">Product details: measurements, care, fit notes</text>
+  <rect x="60" y="960" width="1040" height="160" fill="#fff" stroke="#eee"/>
+  <text x="80" y="1000" font-family="Arial" font-size="18" fill="#333">Reviews and UGC</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg width="800" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#fff"/>
+  <text x="40" y="60" font-family="Arial" font-size="22" fill="#111">Measurement Flow — Mobile (steps top to bottom)</text>
+  <rect x="40" y="100" width="720" height="120" fill="#f5f5f5" stroke="#ddd"/>
+  <text x="60" y="140" font-family="Arial" font-size="18" fill="#333">1) Consent & instructions (short list + privacy checkbox)</text>
+  <rect x="40" y="240" width="720" height="320" fill="#fafafa" stroke="#eee"/>
+  <text x="60" y="280" font-family="Arial" font-size="18" fill="#333">2) Camera-guided captures: front, side, optional back — overlay guidance box</text>
+  <rect x="40" y="580" width="720" height="120" fill="#f8f8f8" stroke="#eee"/>
+  <text x="60" y="620" font-family="Arial" font-size="18" fill="#333">3) Review & confirm photos • retake if needed</text>
+  <rect x="40" y="720" width="720" height="160" fill="#fff" stroke="#eee"/>
+  <text x="60" y="760" font-family="Arial" font-size="18" fill="#333">4) Estimation results: measurements + confidence. If low confidence: prompt manual entry</text>
+  <rect x="40" y="900" width="720" height="120" fill="#fff" stroke="#eee"/>
+  <text x="60" y="940" font-family="Arial" font-size="18" fill="#333">5) Save profile (name measurements), apply to orders</text>
+</svg>

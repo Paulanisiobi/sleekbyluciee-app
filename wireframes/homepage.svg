@@ -1,0 +1,18 @@
+<svg width="1200" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#fff"/>
+  <rect x="40" y="30" width="1120" height="280" fill="#eee" stroke="#ccc"/>
+  <text x="60" y="70" font-family="Arial" font-size="28" fill="#333">Hero carousel (latest collection) — bold image + CTA</text>
+  <rect x="60" y="330" width="320" height="200" fill="#f8f8f8" stroke="#ddd"/>
+  <text x="70" y="360" font-family="Arial" font-size="18" fill="#666">Featured product 1</text>
+  <rect x="410" y="330" width="320" height="200" fill="#f8f8f8" stroke="#ddd"/>
+  <text x="420" y="360" font-family="Arial" font-size="18" fill="#666">Featured product 2</text>
+  <rect x="760" y="330" width="320" height="200" fill="#f8f8f8" stroke="#ddd"/>
+  <text x="770" y="360" font-family="Arial" font-size="18" fill="#666">Featured product 3</text>
+  <rect x="60" y="560" width="1020" height="120" fill="#fafafa" stroke="#eee"/>
+  <text x="70" y="590" font-family="Arial" font-size="20" fill="#333">Instagram / UGC feed</text>
+  <rect x="60" y="710" width="420" height="400" fill="#fff" stroke="#eee"/>
+  <text x="70" y="740" font-family="Arial" font-size="18" fill="#333">Editorial / Brand Story</text>
+  <rect x="520" y="710" width="560" height="400" fill="#fff" stroke="#eee"/>
+  <text x="540" y="740" font-family="Arial" font-size="18" fill="#333">Newsletter signup / CTA</text>
+  <text x="60" y="1150" font-family="Arial" font-size="14" fill="#999">Footer with links: About, Contact, FAQ, Social</text>
+</svg>

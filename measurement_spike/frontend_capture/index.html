@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SleekByLuciee — Capture</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <h1>SleekByLuciee — Capture Measurement Photo</h1>
+
+    <div class="camera-wrap">
+      <video id="video" autoplay playsinline></video>
+      <canvas id="overlay"></canvas>
+    </div>
+
+    <div class="controls">
+      <label>Height (cm): <input id="height" type="number" min="120" max="220" placeholder="165"></label>
+      <label>Engine:
+        <select id="engine">
+          <option value="mediapipe">mediapipe</option>
+          <option value="stub">stub (mock)</option>
+        </select>
+      </label>
+      <button id="captureBtn">Capture Photo</button>
+      <button id="sendBtn" disabled>Send to /measure</button>
+      <button id="downloadBtn" disabled>Download Image</button>
+    </div>
+
+    <section>
+      <h2>Response</h2>
+      <pre id="response">No data yet.</pre>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+  <script src="capture.js"></script>
+</body>
+</html>

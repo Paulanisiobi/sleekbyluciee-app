@@ -1,0 +1,22 @@
+Summary,Issue Type,Description,Priority,Epic Link,Epic Name,Story Points,Labels
+Project Setup: Initialize repo and CI,Task,Initialize repository and GitHub Actions for CI; protect main branch,High,Project Setup & Discovery,Project Setup & Discovery,3,setup
+Epic: Measurement feasibility (MVP),Epic,Proof-of-concept for measurement capture and estimation,High,,Measurement & Fitting,5,measurement
+Spike: Measurement feasibility (MVP) - POC,Spike,Run a proof-of-concept that accepts photos and returns estimated measurements. README and run instructions included.,High,Measurement & Fitting,Measurement & Fitting,5,measurement,spike
+Epic: Authentication & Profiles,Epic,User accounts, measurement profiles and authentication flows,High,,Authentication & Profiles,8,auth
+User Story: Account Registration,Story,As a shopper I can create an account and verify email. Acceptance: register, receive verification email, and login.,High,Authentication & Profiles,Authentication & Profiles,3,auth
+User Story: Save Measurement Profile,Story,As a user I can save a measurement profile to reuse for orders. Acceptance: Measurements saved, visible in profile, encrypted at rest.,High,Authentication & Profiles,Authentication & Profiles,5,measurements
+Epic: Product Catalog,Epic,Product browsing, PDPs, categories and filters,High,,Product Catalog,13,catalog
+User Story: Browse Catalog,Story,As a shopper I can browse categories and filter products. Acceptance: categories & filters return expected products.,High,Product Catalog,Product Catalog,5,catalog
+User Story: Product Detail Page,Story,As a shopper I can view product details, images, materials, and size guide. Acceptance: PDP shows gallery, size guide and works.,High,Product Catalog,Product Catalog,8,catalog
+Epic: Cart & Checkout,Epic,Cart persistence and checkout integrations,High,,Cart & Checkout,13,checkout
+User Story: Persistent Cart,Story,Cart persists across devices when user is logged in. Acceptance: Items added on one device appear on another after login.,High,Cart & Checkout,Cart & Checkout,5,checkout
+User Story: Checkout with Paystack,Story,As a shopper I can complete payment with Paystack. Acceptance: Orders created and payment webhook reconciles status.,High,Cart & Checkout,Cart & Checkout,8,checkout,payments
+Epic: AI Chatbot,Epic,Chatbot for FAQs, order status, and human handoff,Medium,,AI Chatbot,8,ai
+User Story: AI Chatbot FAQ,Story,Chatbot answers FAQs and provides order status lookups. Acceptance: chatbot handles >80% FAQ intents and hands off to human when needed.,Medium,AI Chatbot,AI Chatbot,8,ai,chatbot
+Epic: Consultation & Appointments,Epic,Booking and virtual consultation flows,Medium,,Consultation & Appointments,8,consult
+User Story: Booking Virtual Consultation,Story,User schedules virtual consultation and receives calendar invite. Acceptance: Booking stored and calendar invite + reminders sent.,Medium,Consultation & Appointments,Consultation & Appointments,5,consult,booking
+Epic: Admin / Merchant Dashboard,Epic,Admin capabilities: products, orders, leads, reports,High,,Admin / Merchant Dashboard,13,admin
+Task: Admin Dashboard - core,Task,Admin can manage products, orders, and leads. Acceptance: Admin CRUD implemented; orders view and export present.,High,Admin / Merchant Dashboard,Admin / Merchant Dashboard,13,admin
+Epic: Marketing & CRM,Epic,Marketing automation, abandoned cart flows and CRM integration,High,,Marketing & CRM,8,marketing
+Epic Task: Marketing Automation,Epic,Setup abandoned cart flows and CRM integration,High,,Marketing & CRM,8,marketing
+Task: Analytics & Monitoring,Task,Instrument GA4, Sentry and basic analytics events. Acceptance: GA4 events tracked and Sentry reporting errors.,Medium,Analytics,Analytics,3,analytics
