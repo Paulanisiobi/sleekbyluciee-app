@@ -67,3 +67,57 @@ Additional queue / worker notes
 - `/measure/status/<job_id>`: status endpoint (also supports `?wait=seconds` for long-polling). The worker updates `status`, `result`, and `last_error` fields.
 - Webhook callbacks: if you include `webhook_url` in the job payload (form field), the worker attempts to POST the result JSON to that URL after completion.
 - `e2e_smoke_test.py`: small script that enqueues a stub job and asserts the worker completes it — useful for CI validation.
+
+Docker Compose (quick local setup)
+1. From the project root you can start Postgres, the Flask app and the worker with Docker Compose (detached):
+
+```bash
+# from the repository root
+docker compose up --build -d db app worker
+```
+
+2. Run the E2E smoke test as a one-off container and remove it when finished (recommended for CI):
+
+```bash
+docker compose run --rm e2e
+```
+
+3. The Flask API will be available at `http://localhost:5000` while services are running. When finished, tear down the environment:
+
+```bash
+docker compose down --volumes --remove-orphans
+```
+
+Alternative: run the smoke test from the host (after starting compose) by pointing `DATABASE_URL` at the container DB:
+
+```bash
+# set DATABASE_URL and run the smoke test (after docker compose up -d)
+export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/sleekdb
+python e2e_smoke_test.py
+```
+
+The `docker-compose.yml` mounts `measurement_spike/uploads` so images are preserved on the host.
+
+Metrics & Sentry
+- To expose worker metrics, set `METRICS_PORT` (default 8000). Prometheus metrics are available at `http://<worker-host>:<METRICS_PORT>/`.
+- To enable Sentry error reporting, set `SENTRY_DSN` environment variable for the worker (and app, if desired).
+
+Admin UI (dead-letter inspection)
+- A tiny admin web UI is now available at `/admin` on the Flask app. It lists dead-lettered jobs and lets you inspect and requeue them.
+- The admin UI is protected by an `ADMIN_TOKEN` environment variable. If `ADMIN_TOKEN` is set, provide it with the `X-Admin-Token` header or `?token=` query parameter when accessing the UI. If `ADMIN_TOKEN` is not set, the UI is open (not recommended in production).
+- Example (with Docker Compose):
+
+```bash
+# set a short-lived admin token and start services
+ADMIN_TOKEN=secret123 docker compose up --build -d db app worker
+
+# open the admin UI at http://localhost:5000/admin (browser) and supply the token
+```
+
+CLI deprecation note
+- The repository previously included a `dead_letter_admin.py` CLI. The CLI still exists for scripted usage, but the web UI offers a convenient replacement. Use whichever fits your workflow.
+
+Prometheus & local scraping
+- Prometheus is included as a compose service and reads `prometheus/prometheus.yml`. When running via `docker compose up`, Prometheus will be available at `http://localhost:9090`.
+- The worker metrics endpoint is exposed on host port `8000` (mapped to the container). CI also queries `http://localhost:8000/` to validate that jobs were processed during the E2E run.
+

@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sleekdb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: ./measurement_spike
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/sleekdb
+    volumes:
+      - ./measurement_spike/uploads:/app/uploads
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD-SHELL","python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5000/');\"" ]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  worker:
+    build:
+      context: ./measurement_spike
+      dockerfile: Dockerfile
+    command: ["python","pg_worker.py"]
+    restart: on-failure
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/sleekdb
+    volumes:
+      - ./measurement_spike/uploads:/app/uploads
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  e2e:
+    build:
+      context: ./measurement_spike
+      dockerfile: Dockerfile.e2e
+    command: ["python", "e2e_container_test.py"]
+    environment:
+      - E2E_API_URL=http://app:5000
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/sleekdb
+    depends_on:
+      db:
+        condition: service_healthy
+      app:
+        condition: service_healthy
+      worker:
+        condition: service_started
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - worker
+
+volumes:
+  db_data:

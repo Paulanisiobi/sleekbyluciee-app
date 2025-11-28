@@ -93,6 +93,26 @@ def update_job_failed(job_id: str, error_text: str):
         conn.close()
 
 
+def increment_attempts(job_id: str):
+    conn = get_conn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("UPDATE measurement_jobs SET attempts = attempts + 1 WHERE id=%s", (job_id,))
+            conn.commit()
+    finally:
+        conn.close()
+
+
+def mark_job_dead(job_id: str, reason: str = None):
+    conn = get_conn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("UPDATE measurement_jobs SET status='dead', last_error=%s WHERE id=%s", (reason, job_id))
+            conn.commit()
+    finally:
+        conn.close()
+
+
 def get_job(job_id: str):
     conn = get_conn()
     try:

@@ -1,0 +1,11 @@
+FROM python:3.11-slim
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1
+
+# Install only small deps needed for the e2e test
+COPY requirements-e2e.txt /app/requirements-e2e.txt
+RUN pip install --no-cache-dir -r requirements-e2e.txt
+
+COPY e2e_container_test.py /app/e2e_container_test.py
+
+CMD ["python", "e2e_container_test.py"]

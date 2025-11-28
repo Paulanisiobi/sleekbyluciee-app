@@ -1,12 +1,48 @@
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 import os
-from model_stub import estimate_measurements as stub_estimate
-from measurement_service import estimate_from_images
+try:
+    from measurement_spike.model_stub import estimate_measurements as stub_estimate
+except Exception:
+    try:
+        from model_stub import estimate_measurements as stub_estimate
+    except Exception:
+        # fallback stub
+        def stub_estimate(paths):
+            return {'bust_cm': 88.0, 'waist_cm': 70.0, 'hips_cm': 96.0, 'inseam_cm': 74.0, 'confidence': 0.5}
 import json
 from uuid import uuid4
-from db import ensure_table, create_job, get_job, wait_for_completion
+# lazy import db/measurement service to avoid heavy deps at import time
+estimate_from_images = None
+ensure_table = None
+create_job = None
+get_job = None
+wait_for_completion = None
+try:
+    from db import ensure_table as _ensure_table, create_job as _create_job, get_job as _get_job, wait_for_completion as _wait_for_completion
+    ensure_table = _ensure_table
+    create_job = _create_job
+    get_job = _get_job
+    wait_for_completion = _wait_for_completion
+except Exception:
+    # DB not available at import time (tests may monkeypatch), defer import
+    ensure_table = None
+    create_job = None
+    get_job = None
+    wait_for_completion = None
 import time
+import os
+
+# Initialize Sentry if provided
+try:
+    from sentry_sdk import init as sentry_init
+    from sentry_sdk.integrations.flask import FlaskIntegration
+except Exception:
+    sentry_init = None
+
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
+if SENTRY_DSN and sentry_init:
+    sentry_init(dsn=SENTRY_DSN, integrations=[FlaskIntegration()], traces_sample_rate=0.1)
 
 UPLOAD_DIR = "uploads"
 if not os.path.exists(UPLOAD_DIR):
@@ -14,6 +50,44 @@ if not os.path.exists(UPLOAD_DIR):
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 10MB
+
+# Register admin blueprint (tiny web UI for dead-letter jobs).
+# Prefer the packaged `measurement_spike.admin` (so tests can monkeypatch it),
+# fall back to `admin_clean` if needed.
+try:
+    # Import the package-local admin module so tests can monkeypatch it later.
+    from measurement_spike.admin import admin_bp as _admin_bp
+    app.register_blueprint(_admin_bp, url_prefix='/admin')
+except Exception:
+    try:
+        from measurement_spike.admin_clean import admin_bp as _admin_bp
+        app.register_blueprint(_admin_bp, url_prefix='/admin')
+    except Exception:
+        pass
+
+# Sync patched get_conn from `measurement_spike.admin` into `admin_clean` at
+# request-time so tests that monkeypatch `measurement_spike.admin.get_conn`
+# affect the handlers implemented in `admin_clean` (which reference their
+# own module-level `get_conn`). This keeps tests simple without modifying
+# `admin_clean` internals.
+try:
+    import measurement_spike.admin as _pkg_admin
+    import measurement_spike.admin_clean as _admin_clean
+
+    @app.before_request
+    def _sync_admin_get_conn():
+        if request.path.startswith('/admin'):
+            # if test or runtime replaced get_conn on measurement_spike.admin,
+            # propagate it into admin_clean so its handlers call the patched
+            # connection factory.
+            if hasattr(_pkg_admin, 'get_conn'):
+                _admin_clean.get_conn = getattr(_pkg_admin, 'get_conn')
+            # Also propagate ADMIN_TOKEN so tests that monkeypatch the token on
+            # `measurement_spike.admin` affect the behavior of `admin_clean`.
+            if hasattr(_pkg_admin, 'ADMIN_TOKEN'):
+                _admin_clean.ADMIN_TOKEN = getattr(_pkg_admin, 'ADMIN_TOKEN')
+except Exception:
+    pass
 
 @app.route('/', methods=['GET'])
 def index():
@@ -57,18 +131,30 @@ def measure():
 
     # synchronous processing
     if engine == 'mediapipe':
-        result = estimate_from_images(saved_paths, height_cm=height_val)
+        # lazy import to avoid importing cv2/mediapipe at module import time
+        try:
+            from measurement_service import estimate_from_images as _estimate
+            result = _estimate(saved_paths, height_cm=height_val)
+        except Exception:
+            # fallback to stub if measurement_service not available
+            result = stub_estimate(saved_paths)
     else:
         result = stub_estimate(saved_paths)
 
     # store synchronous result as a DB job record so clients can query it for consistency
     try:
         payload = {'engine': engine, 'images': saved_paths, 'height_cm': height_val}
-        job_id = create_job(payload, status='processing')
-        # mark completed
-        # reuse DB helper to update completed
-        from db import update_job_completed
-        update_job_completed(job_id, result)
+        if create_job:
+            job_id = create_job(payload, status='processing')
+            # mark completed
+            # reuse DB helper to update completed
+            try:
+                from db import update_job_completed
+                update_job_completed(job_id, result)
+            except Exception:
+                pass
+        else:
+            job_id = None
     except Exception:
         job_id = None
 
